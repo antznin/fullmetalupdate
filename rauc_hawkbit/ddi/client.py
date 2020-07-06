@@ -167,7 +167,7 @@ class DDIClient(object):
 
         with async_timeout.timeout(self.timeout, loop=self.session.loop):
             async with self.session.get(url, headers=get_headers,
-                                        params=query_params) as resp:
+                                        params=query_params, verify_ssl=False) as resp:
                 await self.check_http_status(resp)
                 json = await resp.json()
                 self.logger.debug(json)
